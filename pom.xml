@@ -62,7 +62,7 @@
                         <executions>
                             <execution>
                                 <id>clean-build-dir</id>
-                                <phase>clean</phase>
+                                <phase>pre-clean</phase>
                                 <goals>
                                     <goal>exec</goal>
                                 </goals>
@@ -70,7 +70,7 @@
                                     <executable>powershell</executable>
                                     <!-- @formatter:off -->
                                     <commandlineArgs>
-                                        -Command "if (Test-Path monkey) { Remove-Item -Path 'monkey' -Recurse -Force }"
+                                        -Command "if (Test-Path target/monkey) { Remove-Item -Path 'target/monkey' -Recurse -Force }"
                                     </commandlineArgs>
                                     <!-- @formatter:on -->
                                 </configuration>
@@ -85,7 +85,7 @@
                                     <executable>jpackage</executable>
                                     <!-- @formatter:off -->
                                     <commandlineArgs>
-                                        --type app-image -n monkey -p target/monkey-${version}.jar -m monkey.interpreter.java/com.github.personal.island.monkey.Monkey --app-version ${app.version} --win-console
+                                        --type app-image -n monkey -p target/monkey-${version}.jar -m monkey.interpreter.java/com.github.personal.island.monkey.Monkey --app-version ${app.version} -d target/ --win-console
                                     </commandlineArgs>
                                     <!-- @formatter:on -->
                                 </configuration>
